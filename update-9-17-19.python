@@ -1,0 +1,64 @@
+from tkinter import *
+import random
+
+def run():
+    s = 0
+    
+    quantity = int(inp1.get())
+    max_ = int(inp2.get())
+    
+    for i in range(quantity):
+        a = random.randint(1,max_)
+        b = random.randint(1,max_)
+        c = random.randint(1,4)
+        if c == 1:
+            s = str(str(a)+' + '+str(b)+' = ')+'\n'
+        elif c == 2:
+            s = str(str(a)+' - '+str(b)+' = ')+'\n'
+        elif c == 3:
+            s = str(str(a)+' × '+str(b)+' = ')+'\n'
+        elif c == 4:
+            s = str(str(a)+' ÷ '+str(b)+' = ')+'\n'
+        lb.insert(0, s)
+    
+    inp1.delete(0, END)
+    inp2.delete(0, END)
+
+root = Tk()
+
+lb = Listbox(root)
+lb.delete(0, END)
+sl = Scrollbar(root)
+
+sl.place(relx = 0.4, rely = 0.12, relwidth = 0.01, relheight = 0.8)
+lb['yscrollcommand'] = sl.set
+
+lb.place(relx = 0.1, rely = 0.12, relwidth = 0.3, relheight = 0.8)
+sl['command'] = lb.yview
+
+root.geometry('1000x800')
+root.title('四则运算出题程序')
+
+lb1 = Label(root, text = '输入数量和上限', font=('华文新魏', 32), fg='red')
+lb1.place(relx = 0.55, rely = 0, relwidth = 0.4, relheight = 0.2)
+
+lb2 = Label(root, text = '数量(<=300)', font=('华文新魏', 16))
+lb2.place(relx = 0.56, rely = 0.2, relwidth = 0.14, relheight = 0.05)
+
+lb3 = Label(root, text = '上限(<=1000)', font=('华文新魏', 16))
+lb3.place(relx = 0.56, rely = 0.3, relwidth = 0.14, relheight = 0.05)
+
+lb4 = Label(root, text = '题目', font=('华文新魏', 16))
+lb4.place(relx = 0.1, rely = 0.02, relwidth = 0.08, relheight = 0.1)
+
+inp1 = Entry(root)
+inp1.place(relx = 0.7, rely = 0.2, relwidth = 0.1, relheight = 0.0618)
+
+inp2 = Entry(root)
+inp2.place(relx = 0.7, rely = 0.3, relwidth = 0.1, relheight = 0.0618)
+
+btn1 = Button(root, text = '打印', font=('华文新魏', 16), command = run)
+btn1.place(relx = 0.7, rely = 0.4, relwidth = 0.1, relheight = 0.0618)
+
+root.mainloop
+
